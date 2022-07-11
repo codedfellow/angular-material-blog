@@ -28,46 +28,46 @@ export class TextEditorCompComponent implements OnInit {
   }
 
   onChange(event: CKEditor4.EventInfo) {
-    console.log('inside ckeditor parent...',event.editor.getData());
+    // console.log('inside ckeditor parent...',event.editor.getData());
     this.changeVal.emit(event.editor.getData())
   }
 
   onDataChange(event: CKEditor4.EventInfo) {
-    console.log('datachange inside ckeditor parent...', event);
+    // console.log('datachange inside ckeditor parent...', event);
     this.dataChangeVal.emit(event);
   }
 
   onFocus(event: CKEditor4.EventInfo) {
-    console.log('focus inside ckeditor parent...', event.editor.getData());
+    // console.log('focus inside ckeditor parent...', event.editor.getData());
     this.focusVal.emit(event.editor.getData())
   }
 
   onBlur(event: CKEditor4.EventInfo) {
-    console.log('blur inside ckeditor parent...', event.editor.getData());
+    // console.log('blur inside ckeditor parent...', event.editor.getData());
     this.blurVal.emit(event.editor.getData());
   }
 
   onPaste(event: CKEditor4.EventInfo) {
-    console.log('paste inside ckeditor parent...', event.editor.getData());
+    // console.log('paste inside ckeditor parent...', event.editor.getData());
     this.pasteVal.emit(event.editor.getData());
   }
 
   onAfterPaste(event: CKEditor4.EventInfo) {
-    console.log('afterPaste inside ckeditor parent...', event.editor.getData());
+    // console.log('afterPaste inside ckeditor parent...', event.editor.getData());
     this.afterPasteVal.emit(event.editor.getData());
   }
 
   onNamespaceLoaded(event: any) {
-    console.log('datachange inside ckeditor parent...', event);
+    // console.log('datachange inside ckeditor parent...', event);
   }
 
   onUploadReq(event: CKEditor4.EventInfo) {
-    console.log('uploadEvent inside ckeditor parent...', event.editor.getData());
+    // console.log('uploadEvent inside ckeditor parent...', event.editor.getData());
     this.uploadVal.emit(event.editor.getData());
   }
 
   onUploadRes(event: CKEditor4.EventInfo) {
-    console.log('afterUploadEvent inside ckeditor parent...', event.editor.getData());
+    // console.log('afterUploadEvent inside ckeditor parent...', event.editor.getData());
     this.afterUploadVal.emit(event.editor.getData());
   }
 }
