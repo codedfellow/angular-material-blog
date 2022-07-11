@@ -3,9 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 //material modules
 import { MaterialModules } from "./material-modules";
+// import { CKEditorModule } from 'ckeditor4-angular';
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +17,11 @@ import { MaterialModules } from "./material-modules";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModules
+    MaterialModules,
+    FormsModule,
+    ReactiveFormsModule,
+    // CKEditorModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

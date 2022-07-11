@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-blog';
+
+  ckChange(event:any) {
+    console.log('ck change in app component...', event);
+  }
+
+  ckDataChange(event: any) {
+    console.log('ck data change in app component...', event);
+  }
 }
