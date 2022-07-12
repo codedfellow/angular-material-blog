@@ -22,7 +22,9 @@
       "es2020",
       "dom"
     ],
-    "allowSyntheticDefaultImports": true
+    // "allowSyntheticDefaultImports": true
+    "typeRoots": ["./src/app/typings.d.ts"],
+    "allowJs": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

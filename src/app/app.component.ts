@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-blog';
-
+  public htmlData: string = "<p>hello</p>"
+  public readonly: boolean = false;
   ckChange(event:any) {
     console.log('ck change in app component...', event);
   }

@@ -1,1 +1,2 @@
-<ckeditor (namespaceLoaded)="onNamespaceLoaded($event)" (change)="onChange($event)" [(data)]="ckText" (dataChange)="onDataChange($event)" (focus)="onFocus($event)" (blur)="onBlur($event)" (paste)="onPaste($event)" (afterPaste)="onAfterPaste($event)" (fileUploadRequest)="onUploadReq($event)" (fileUploadResponse)="onUploadRes($event)"></ckeditor>
+<ckeditor (change)="onChange($event)" [editor]="Editor" [config]='config' [disabled]="readonly" [data]="inputVal" (ready)="onReady($event)">
+</ckeditor>

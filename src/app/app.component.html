@@ -49,7 +49,9 @@
       </div>
     </div>
     <div class="col-md-8">
-      <app-text-editor-comp (changeVal)="ckChange($event)" (dataChangeVal)="ckDataChange($event)"></app-text-editor-comp>
+      <app-ck-editor-comp [inputVal]="htmlData" [readonly]="readonly" (outEvent)="ckChange($event)"></app-ck-editor-comp>
+
+      
     </div>
   </div>
 </div>

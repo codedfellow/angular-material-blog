@@ -1,73 +1,141 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CKEditor4 } from 'ckeditor4-angular';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import * as customBuild from '@ckeditor/ckeditor5-build-classic';
+/// <reference path="typings.d.ts"/>
+import * as customBuild from '../../ckCustomBuild/build/ckeditor';
 
 @Component({
-  selector: 'app-text-editor-comp',
+  selector: 'app-ck-editor-comp',
   templateUrl: './text-editor-comp.component.html',
-  styleUrls: ['./text-editor-comp.component.css']
+  styleUrls: ['./text-editor-comp.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TextEditorCompComponent),
+      multi: true
+    }
+  ]
 })
 export class TextEditorCompComponent implements OnInit {
-  @Input() ckText: any = "hello";
-  @Output() changeVal = new EventEmitter<any>();
-  @Output() dataChangeVal = new EventEmitter<any>();
-  @Output() focusVal = new EventEmitter<any>();
-  @Output() blurVal = new EventEmitter<any>();
-  @Output() uploadVal = new EventEmitter<any>();
-  @Output() afterUploadVal = new EventEmitter<any>();
-  @Output() pasteVal = new EventEmitter<any>();
-  @Output() afterPasteVal = new EventEmitter<any>();
+  public Editor = customBuild;
+  @Input() readonly: boolean = false;
+  @Input() inputVal: string = "hello editor";
+  private _value: string = '';
+  @Output() outEvent = new EventEmitter<any>();
 
+  // get value() {
+  //   return this._value;
+  // }
 
-  // public model = {
-  //   editorData: '<p>Hello, world!</p>'
-  // };
+  // set value(v: string) {
+  //   if (v !== this._value) {
+  //     this._value = v;
+  //     this.onChange(v);
+  //   }
+  // }
 
   constructor() { }
+
+  public onChange({ editor }: ChangeEvent) {
+    const data = editor.getData();
+    this.outEvent.emit(data);
+    console.log('data in ckeditor...',data);
+  }
+  onTouch() { }
+
+  writeValue(obj: any): void {
+    this._value = obj;
+
+  }
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+  }
+
 
   ngOnInit(): void {
   }
 
-  onChange(event: CKEditor4.EventInfo) {
-    // console.log('inside ckeditor parent...',event.editor.getData());
-    this.changeVal.emit(event.editor.getData())
-  }
+  title = 'ckeditorAngular10';
+  @Input() config = {
+    toolbar: {
+      items: [
+        'heading', '|',
+        'fontfamily', 'fontsize',
+        'alignment',
+        'fontColor', 'fontBackgroundColor', '|',
+        'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+        'link', '|',
+        'outdent', 'indent', '|',
+        'bulletedList', '-', 'numberedList', 'todoList', '|',
+        'code', 'codeBlock', '|',
+        'insertTable', '|',
+        'imageUpload', 'blockQuote', '|',
+        'todoList'
+        ,
+        'undo', 'redo',
+      ],
+      shouldNotGroupWhenFull: true,
 
-  onDataChange(event: CKEditor4.EventInfo) {
-    // console.log('datachange inside ckeditor parent...', event);
-    this.dataChangeVal.emit(event);
-  }
+    },
+    image: {
+      // Configure the available styles.
+      styles: [
+        'alignLeft', 'alignCenter', 'alignRight'
+      ],
 
-  onFocus(event: CKEditor4.EventInfo) {
-    // console.log('focus inside ckeditor parent...', event.editor.getData());
-    this.focusVal.emit(event.editor.getData())
-  }
+      // Configure the available image resize options.
+      resizeOptions: [
+        {
+          name: 'resizeImage:original',
+          label: 'Original',
+          value: null
+        },
+        {
+          name: 'resizeImage:50',
+          label: '25%',
+          value: '25'
+        },
+        {
+          name: 'resizeImage:50',
+          label: '50%',
+          value: '50'
+        },
+        {
+          name: 'resizeImage:75',
+          label: '75%',
+          value: '75'
+        }
+      ],
 
-  onBlur(event: CKEditor4.EventInfo) {
-    // console.log('blur inside ckeditor parent...', event.editor.getData());
-    this.blurVal.emit(event.editor.getData());
-  }
+      // You need to configure the image toolbar, too, so it shows the new style
+      // buttons as well as the resize buttons.
+      toolbar: [
+        'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+        '|',
+        'ImageResize',
+        '|',
+        'imageTextAlternative'
+      ]
+    },
+    // simpleUpload: {
+    //    The URL that the images are uploaded to.
+    // uploadUrl: 'http://localhost:52536/api/Image/ImageUpload',
 
-  onPaste(event: CKEditor4.EventInfo) {
-    // console.log('paste inside ckeditor parent...', event.editor.getData());
-    this.pasteVal.emit(event.editor.getData());
-  }
+    //   Enable the XMLHttpRequest.withCredentials property.
 
-  onAfterPaste(event: CKEditor4.EventInfo) {
-    // console.log('afterPaste inside ckeditor parent...', event.editor.getData());
-    this.afterPasteVal.emit(event.editor.getData());
-  }
+    //},
 
-  onNamespaceLoaded(event: any) {
-    // console.log('datachange inside ckeditor parent...', event);
-  }
+    language: 'en'
+  };
 
-  onUploadReq(event: CKEditor4.EventInfo) {
-    // console.log('uploadEvent inside ckeditor parent...', event.editor.getData());
-    this.uploadVal.emit(event.editor.getData());
-  }
-
-  onUploadRes(event: CKEditor4.EventInfo) {
-    // console.log('afterUploadEvent inside ckeditor parent...', event.editor.getData());
-    this.afterUploadVal.emit(event.editor.getData());
+  onReady(editor: any) {
+    if (editor.model.schema.isRegistered('image')) {
+      editor.model.schema.extend('image', { allowAttributes: 'blockIndent' });
+    }
   }
 }
