@@ -46,12 +46,13 @@
         </p>
         <a href="#" class="card-link">Card link</a>
         <a href="#" class="card-link">Another link</a>
+        <button class="btn btn-primary">Button</button>
+        <button class="btn btn-danger">Button</button>
+        <button class="btn btn-secondary">Button</button>
       </div>
     </div>
     <div class="col-md-8">
-      <app-ck-editor-comp [inputVal]="htmlData" [readonly]="readonly" (outEvent)="ckChange($event)"></app-ck-editor-comp>
-
-      
+      <app-ck-editor-comp [inputVal]="htmlData" [readonly]="readonly" (outEvent)="ckChange($event)"></app-ck-editor-comp> 
     </div>
   </div>
 </div>

@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* You can add global styles to this file, and also import other style files */
+// Required
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+// Then add additional custom code here
+// $body-bg: #000;
+// $body-color: #111;
+$primary: #423d79;
+$danger: #790404;
+// etc
+$custom-theme-colors: map-merge($theme-colors, ("danger": $danger));
+$custom-theme-colors: map-merge($theme-colors, ("primary": $primary));
+// $theme-colors: (
+//     "danger": $danger
+// );
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+@import "bootstrap";
+
+html,
+body {
+    height: 100%;
+}
+
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.page-header {
+    background-color: #81B622;
+}
+
+.white-header {
+    color: white;
+}
