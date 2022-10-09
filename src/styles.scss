@@ -1,32 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-/* You can add global styles to this file, and also import other style files */
 // Required
 // Custom.scss
 // Option A: Include all of Bootstrap
 
 // Include any default variable overrides here (though functions won't be available)
 
-@import "../node_modules/bootstrap/scss/bootstrap";
+$purple-dark: #4a4e69;
+$purple-light: #c9ada7;
+$gold: #9a8c98;
+$warn: #22223b;
+$footer: #151414;
+
+// #######################################
+//		NO NEED TO CUSTOM THE GRAY COLOR IF YOU DO NOT
+// #######################################
 
 
+$primary: $purple-dark;
+$secondary: $gold;
+$info: $purple-light;
+$warning: $warn;
 // Then add additional custom code here
 // $body-bg: #000;
 // $body-color: #111;
-$primary: #423d79;
-$danger: #790404;
+// $primary: #423d79;
+// $danger: #790404;
+// $secondary: #81B622;
+// $bg-secondary: $secondary;
+// $bg-primary:$primary;
 // etc
-$custom-theme-colors: map-merge($theme-colors, ("danger": $danger));
-$custom-theme-colors: map-merge($theme-colors, ("primary": $primary));
+// $custom-theme-colors: map-merge($theme-colors, ("danger": $danger));
+// $custom-theme-colors: map-merge($theme-colors, ("primary": $primary));
+// $custom-theme-colors: map-merge($theme-colors, ("secondary": $secondary));
+// $custom-theme-colors: map-merge($theme-colors, ("bg-secondary": $bg-secondary));
+// $custom-theme-colors: map-merge($theme-colors, ("bg-primary": $bg-primary));
 // $theme-colors: (
 //     "danger": $danger
 // );
-$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+// $theme-colors: map-merge($theme-colors, $custom-theme-colors);
 
-@import "bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+// @import "../node_modules/bootstrap/scss/bootstrap";
+// @import "bootstrap";
 
 html,
 body {
